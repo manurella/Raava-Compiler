@@ -35,7 +35,7 @@ class TestParserLetStatements:
         stmt = program.declarations[0]
         assert isinstance(stmt, ast.LetStatement)
         assert stmt.type_annotation == 'bool'
-        assert isinstance(stmt.value, ast.BoolLiteral)
+        assert isinstance(stmt.value, ast.BooleanLiteral)
         assert stmt.value.value is True
 
     def test_let_element(self):
@@ -53,42 +53,42 @@ class TestParserExpressions:
     def test_addition(self):
         program = parse('let x: int = 1 + 2;')
         expr = program.declarations[0].value
-        assert isinstance(expr, ast.BinaryOp)
+        assert isinstance(expr, ast.BinaryOperation)
         assert expr.operator == '+'
 
     def test_operator_precedence(self):
         """Multiplication should bind tighter than addition."""
         program = parse('let x: int = 1 + 2 * 3;')
         expr = program.declarations[0].value
-        assert isinstance(expr, ast.BinaryOp)
+        assert isinstance(expr, ast.BinaryOperation)
         assert expr.operator == '+'
-        assert isinstance(expr.right, ast.BinaryOp)
+        assert isinstance(expr.right, ast.BinaryOperation)
         assert expr.right.operator == '*'
 
     def test_parenthesized_expression(self):
         program = parse('let x: int = (1 + 2) * 3;')
         expr = program.declarations[0].value
-        assert isinstance(expr, ast.BinaryOp)
+        assert isinstance(expr, ast.BinaryOperation)
         assert expr.operator == '*'
-        assert isinstance(expr.left, ast.BinaryOp)
+        assert isinstance(expr.left, ast.BinaryOperation)
         assert expr.left.operator == '+'
 
     def test_unary_negation(self):
         program = parse('let x: int = -5;')
         expr = program.declarations[0].value
-        assert isinstance(expr, ast.UnaryOp)
+        assert isinstance(expr, ast.UnaryOperation)
         assert expr.operator == '-'
 
     def test_comparison(self):
         program = parse('let flag: bool = x > 5;')
         expr = program.declarations[0].value
-        assert isinstance(expr, ast.BinaryOp)
+        assert isinstance(expr, ast.BinaryOperation)
         assert expr.operator == '>'
 
     def test_logical_and(self):
         program = parse('let flag: bool = true and false;')
         expr = program.declarations[0].value
-        assert isinstance(expr, ast.BinaryOp)
+        assert isinstance(expr, ast.BinaryOperation)
         assert expr.operator == 'and'
 
 
@@ -121,7 +121,7 @@ class TestParserFunctions:
         decl = program.declarations[0]
         assert isinstance(decl, ast.FunctionDeclaration)
         assert decl.name == 'add'
-        assert len(decl.params) == 2
+        assert len(decl.parameters) == 2
         assert decl.return_type == 'int'
 
     def test_function_call(self):
