@@ -183,22 +183,22 @@ class TestLexerOperators:
     def test_lt(self):
         lexer = Lexer('<')
         tokens = lexer.tokenize()
-        assert tokens[0].type == TokenType.LT
+        assert tokens[0].type == TokenType.LESS_THAN
 
     def test_gt(self):
         lexer = Lexer('>')
         tokens = lexer.tokenize()
-        assert tokens[0].type == TokenType.GT
+        assert tokens[0].type == TokenType.GREATER_THAN
 
     def test_lte(self):
         lexer = Lexer('<=')
         tokens = lexer.tokenize()
-        assert tokens[0].type == TokenType.LTE
+        assert tokens[0].type == TokenType.LESS_THAN_EQ
 
     def test_gte(self):
         lexer = Lexer('>=')
         tokens = lexer.tokenize()
-        assert tokens[0].type == TokenType.GTE
+        assert tokens[0].type == TokenType.GREATER_THAN_EQ
 
     def test_arrow(self):
         lexer = Lexer('->')
@@ -211,8 +211,8 @@ class TestLexerOperators:
         tokens = lexer.tokenize()
         expected = [
             TokenType.COLON, TokenType.SEMICOLON, TokenType.COMMA,
-            TokenType.LPAREN, TokenType.RPAREN,
-            TokenType.LBRACE, TokenType.RBRACE,
+            TokenType.LEFT_PAREN, TokenType.RIGHT_PAREN,
+            TokenType.LEFT_BRACE, TokenType.RIGHT_BRACE,
         ]
         for i, expected_type in enumerate(expected):
             assert tokens[i].type == expected_type
@@ -274,8 +274,8 @@ class TestLexerFullStatements:
         lexer = Lexer('strike(fireball, Up);')
         tokens = lexer.tokenize()
         expected = [
-            TokenType.STRIKE, TokenType.LPAREN, TokenType.IDENTIFIER,
-            TokenType.COMMA, TokenType.UP, TokenType.RPAREN,
+            TokenType.STRIKE, TokenType.LEFT_PAREN, TokenType.IDENTIFIER,
+            TokenType.COMMA, TokenType.UP, TokenType.RIGHT_PAREN,
             TokenType.SEMICOLON, TokenType.EOF,
         ]
         assert [t.type for t in tokens] == expected
