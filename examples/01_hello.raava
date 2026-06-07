@@ -1,0 +1,3 @@
+// 01_hello.raava — The simplest Raava program
+// Prints a number to the screen
+print 42;

@@ -1,0 +1,17 @@
+// 05_bender_battle.raava — A bender simulation on the grid
+spawn(5, 5);
+stance(OffensiveStance);
+
+let fireball: Element = Fire;
+move(Up);
+move(Up);
+strike(fireball, Right);
+
+stance(DefensiveStance);
+block();
+
+let wave: Element = Water;
+move(Left);
+strike(wave, Down);
+
+print 1;

@@ -1,0 +1,14 @@
+// 03_control_flow.raava — If/else and while loops
+let x: int = 10;
+
+if (x > 5) {
+    print 1;
+} else {
+    print 0;
+}
+
+let i: int = 0;
+while (i < 5) {
+    print i;
+    i = i + 1;
+}

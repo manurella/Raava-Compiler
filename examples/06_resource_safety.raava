@@ -1,0 +1,8 @@
+// 06_resource_safety.raava — Demonstrates linear resource safety
+// This program should FAIL to compile with a Vaatu Corruption error
+
+let rock: Element = Earth;
+// ERROR: rock is never consumed!
+// The type checker should catch this.
+
+print 0;

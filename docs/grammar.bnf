@@ -1,0 +1,62 @@
+;; ============================================
+;; Raava Language — Formal BNF Grammar
+;; ============================================
+
+<program>         ::= <decl>*
+
+<decl>            ::= <fun_decl>
+                    | <statement>
+
+<fun_decl>        ::= "fn" IDENTIFIER "(" <param_list>? ")" "->" <type> "{" <statement>* "}"
+
+<param_list>      ::= <param> ( "," <param> )*
+<param>           ::= IDENTIFIER ":" <type>
+
+<type>            ::= "int" | "bool" | "Element" | "Stance"
+
+<statement>       ::= <let_stmt>
+                    | <assign_stmt>
+                    | <if_stmt>
+                    | <while_stmt>
+                    | <return_stmt>
+                    | <print_stmt>
+                    | <action_stmt>
+                    | <block_stmt>
+                    | <expr_stmt>
+
+<let_stmt>        ::= "let" IDENTIFIER ":" <type> "=" <expr> ";"
+<assign_stmt>     ::= IDENTIFIER "=" <expr> ";"
+<if_stmt>         ::= "if" "(" <expr> ")" <block_stmt> ( "else" <block_stmt> )?
+<while_stmt>      ::= "while" "(" <expr> ")" <block_stmt>
+<return_stmt>     ::= "return" <expr> ";"
+<print_stmt>      ::= "print" <expr> ";"
+<block_stmt>      ::= "{" <statement>* "}"
+<expr_stmt>       ::= <expr> ";"
+
+<action_stmt>     ::= "spawn" "(" <expr> "," <expr> ")" ";"
+                    | "move" "(" <direction> ")" ";"
+                    | "stance" "(" <stance_val> ")" ";"
+                    | "strike" "(" <expr> "," <direction> ")" ";"
+                    | "block" "(" ")" ";"
+
+<direction>       ::= "Up" | "Down" | "Left" | "Right"
+<stance_val>      ::= "NeutralStance" | "OffensiveStance" | "DefensiveStance"
+
+<expr>            ::= <or_expr>
+<or_expr>         ::= <and_expr> ( "or" <and_expr> )*
+<and_expr>        ::= <equality_expr> ( "and" <equality_expr> )*
+<equality_expr>   ::= <comparison_expr> ( ( "==" | "!=" ) <comparison_expr> )*
+<comparison_expr> ::= <additive_expr> ( ( "<" | ">" | "<=" | ">=" ) <additive_expr> )*
+<additive_expr>   ::= <mult_expr> ( ( "+" | "-" ) <mult_expr> )*
+<mult_expr>       ::= <unary_expr> ( ( "*" | "/" ) <unary_expr> )*
+<unary_expr>      ::= ( "-" | "not" ) <unary_expr> | <primary_expr>
+
+<primary_expr>    ::= INT_LITERAL
+                    | "true" | "false"
+                    | "Water" | "Earth" | "Fire" | "Air"
+                    | "NeutralStance" | "OffensiveStance" | "DefensiveStance"
+                    | IDENTIFIER "(" <arg_list>? ")"
+                    | IDENTIFIER
+                    | "(" <expr> ")"
+
+<arg_list>        ::= <expr> ( "," <expr> )*

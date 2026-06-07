@@ -1,0 +1,10 @@
+[project]
+name = "raava-compiler"
+version = "0.1.0"
+description = "Raava — A statically-typed, resource-safe bending simulation language compiler and VM"
+requires-python = ">=3.11"
+readme = "README.md"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

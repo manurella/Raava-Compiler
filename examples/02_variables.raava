@@ -1,0 +1,5 @@
+// 02_variables.raava — Variable declarations and arithmetic
+let x: int = 10;
+let y: int = 20;
+let sum: int = x + y;
+print sum;
