@@ -34,6 +34,8 @@ class TokenType ( Enum ) :
     FLOAT_TYPE = auto ( )
     BOOLEAN_TYPE = auto ( )
     STRING_TYPE = auto ( )
+    ELEMENT_TYPE = auto ( )
+    STANCE_TYPE = auto ( )
     
     # Element Literals
     FIRE = auto ( )

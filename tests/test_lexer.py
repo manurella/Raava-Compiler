@@ -66,6 +66,20 @@ class TestLexerBasics:
         tokens = lexer.tokenize()
         assert tokens[0].type == TokenType.INT_LITERAL
         assert tokens[0].value == '42'
+        
+    def test_single_float(self):
+        """A decimal number should produce a FLOAT_LITERAL token."""
+        lexer = Lexer('3.14')
+        tokens = lexer.tokenize()
+        assert tokens[0].type == TokenType.FLOAT_LITERAL
+        assert tokens[0].value == '3.14'
+
+    def test_single_string(self):
+        """A quoted string should produce a STRING_LITERAL token."""
+        lexer = Lexer('"Hello, Wan"')
+        tokens = lexer.tokenize()
+        assert tokens[0].type == TokenType.STRING_LITERAL
+        assert tokens[0].value == 'Hello, Wan'
 
     def test_single_identifier(self):
         """A single name should produce an IDENTIFIER token."""
