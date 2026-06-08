@@ -96,6 +96,7 @@ class Token :
     
     # Token constructor method
     def __init__ ( self , type : TokenType , value : str , line : int , column : int ) :
+        
         self.type = type
         self.value = value
         self.line = line
@@ -103,4 +104,5 @@ class Token :
         
     # Representation method to print the object
     def __repr__ ( self ) -> str :
+        
         return f"Token ( { self.type.name } , { self.value } , { self.line } , { self.column } )"
